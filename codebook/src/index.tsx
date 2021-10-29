@@ -33,7 +33,12 @@ const App = () => {
             entryPoints:['index.js'],
             bundle:true,
             write:false,
-            plugins:[unpkgPathPlugin()]
+            plugins:[unpkgPathPlugin()],
+            // provides a mechanism by which substrings within your code can be found-and-replaced at build time.
+            define:{
+                'process.env.NODE_ENV':'"production"',
+                global:'window'
+            }
         });
         
         setCode(result.outputFiles[0].text);
