@@ -8,7 +8,7 @@ const fileCache = localforage.createInstance({
 
 
 
-export const unpkgPathPlugin = () => {
+export const unpkgPathPlugin = (inputCode:string) => {
   return {
     name: 'unpkg-path-plugin',
     //build represents the bundling process we can intereact or interfere certain parts of  the process with build argument by attaching event listeners to build
@@ -22,7 +22,7 @@ export const unpkgPathPlugin = () => {
         return { path: args.path, namespace: 'a' };
       }
 
-        //Url constructore
+        //When esbuild is trying ot find relative file inside of a module
         if (args.path.includes('./') || args.path.includes('../')) {
           return {
             namespace: 'a',
@@ -33,6 +33,7 @@ export const unpkgPathPlugin = () => {
           };
         }
 
+        //When esbuild is trying to find main file of a module
         return {
           namespace: 'a',
           path: `https://unpkg.com/${args.path}`,
@@ -49,10 +50,7 @@ export const unpkgPathPlugin = () => {
           return {//Don't sweat it!!!Don't try to load  it off the file system we will return an object for you 
             loader: 'jsx',
             //that contains the contents  of the files you were trying to load
-            contents: `
-              import React,{useState} from 'react';
-              console.log(React,useState);
-            `,
+            contents: inputCode 
           };
         } 
         //Check to see if we have already fetched this file
@@ -77,7 +75,7 @@ export const unpkgPathPlugin = () => {
         };
 
         await fileCache.setItem(args.path,result);
-
+ 
         return result;
       });
     },
