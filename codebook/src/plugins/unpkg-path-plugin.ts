@@ -13,15 +13,14 @@ export const unpkgPathPlugin = (inputCode:string) => {
     name: 'unpkg-path-plugin',
     //build represents the bundling process we can intereact or interfere certain parts of  the process with build argument by attaching event listeners to build
     setup(build: esbuild.PluginBuild) {
+      build.onResolve({ filter: /(^index\.js$)/ }, () => {
+        return {path:'index.js',namespace:'a'};
+      });
+
       //Overrides the process of esbuild  of figuring out where the file is  
       //Figure out what the actual path of the file is 
       //filter Regular expression for different onresolve or onload for css js jsx 
     build.onResolve({ filter: /.*/ }, async (args: any) => {
-      console.log('onResolve', args);
-      if (args.path === 'index.js') {
-        return { path: args.path, namespace: 'a' };
-      }
-
         //When esbuild is trying ot find relative file inside of a module
         if (args.path.includes('./') || args.path.includes('../')) {
           return {
