@@ -2,6 +2,7 @@ import {useState,useEffect,useRef} from 'react';
 import ReactDom from 'react-dom';
 import * as esbuild from 'esbuild-wasm';
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
+import { fetchPlugin } from './plugins/fetch-plugins';
 
 const App = () => {
     const ref = useRef<any>();
@@ -33,7 +34,10 @@ const App = () => {
             entryPoints:['index.js'],
             bundle:true,
             write:false,
-            plugins:[unpkgPathPlugin(input)],
+            plugins:[
+                unpkgPathPlugin(),
+                fetchPlugin(input),
+            ],
             // provides a mechanism by which substrings within your code can be found-and-replaced at build time.
             define:{
                 'process.env.NODE_ENV':'"production"',
