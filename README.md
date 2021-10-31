@@ -64,8 +64,29 @@ Breaking up resolve logic wiht filters
 Refactoring to multiple plugins
 Loading css
 Configuring COrrect Loader
+
 Small shortcoming wiht Esbuild
+
+Inside the documentation we had read that whenever esBuild does some bundling, if we import css esBuild is going to spit out two separate files, one file containing all of our JavaScript code and also a second file containing all this css.
+At present, we are not attempting to save the output to some file whenever we do our bundling process.
+We are not specifying that we should write out any output to any file on our file system, because remember,that's the whole problem around running a bundler We do not have a file system. 
+
+Unfortunately, we can only spit out JavaScript directly from the bundle if we are not writing anything to the hard disk, if we're not actually writing to a file.
+So how are we going to fix this?We're going to wrap it inside of some JavaScript and we're going to use that JavaScript to automatically
+
 Tricking ESBuild's CSS Handling
+
+If we are running esbuild from commandline or nodejs server then esbuild has somewhere to write some output files it could spit out js and css
+We are taking everything from 
+we would create a style element and take all the css stick to style tag and append the style tag onto  head tag in our html document
+
+ const contents = fileType === 'css' ?
+              `
+                const style = document.createElement('style');
+                style.innerText = 'body {background-color:"red"}';
+                document.head.appendChild(style);
+              `:data;
+
 Escaping CSS Snippets
 Separate LOad Filters
 Extracting Common Caching Logic
