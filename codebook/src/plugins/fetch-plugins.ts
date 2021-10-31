@@ -24,20 +24,31 @@ export const fetchPlugin = (inputCode:string) => {
               } 
               //Check to see if we have already fetched this file
               //and if it is in the cache
-              const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path);
+              //const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path);
       
               //if it is return it immediately
-              if(cachedResult){
-                return cachedResult;
-              }
+              //if(cachedResult){
+                //return cachedResult;
+              //}
       
       
               const {data,request} = await axios.get(args.path);
-              //store response in cache
-      
+
+              const fileType = args.path.match(/.css$/)?'css':'jsx';
+
+              //Replace all the new line with empty string  and collapse all the css in one line
+              const escaped = data.replace(/\n/g,'')
+              .replace(/"/g,'\\"')//double quotes will be escaped
+              .replace(/'/g,'\\"')//find single quotes and escaped them as well
+              const contents = fileType === 'css' ?
+              ` const style = document.createElement('style');
+                style.innerText = '${escaped}';
+                document.head.appendChild(style);
+              `:data;
+
               const result:esbuild.OnLoadResult =  {
                 loader:'jsx',
-                contents:data,
+                contents:contents,
                 //Will be Provided to the next file that we are trying to require and will describe where we found this original file 
                 //Like /nested-test-pkg/src/
                 resolveDir: new URL('./', request.responseURL).pathname,
