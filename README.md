@@ -81,12 +81,13 @@ We are taking everything from
 we would create a style element and take all the css stick to style tag and append the style tag onto  head tag in our html document
 
  const contents = fileType === 'css' ?
+ ```
               `
                 const style = document.createElement('style');
                 style.innerText = 'body {background-color:"red"}';
                 document.head.appendChild(style);
               `:data;
-
+```
 Escaping CSS Snippets
 Separate LOad Filters
 Extracting Common Caching Logic
