@@ -90,3 +90,33 @@ we would create a style element and take all the css stick to style tag and appe
 Escaping CSS Snippets
 Separate LOad Filters
 Extracting Common Caching Logic
+
+### Code will be provided to Preview as a strin. We have to execute it safely.
+
+After we click we run our bundler and after transpiling we store it to a state we can use  eval() to execute that transpiler code.
+
+Well, the first most obvious thing that might occur is a user might do something like this.
+They might make a very simple typo of something like console, dot, blah, blah, blah, blah, instead of console.log.This code right here can definitely be transpired and bundled without any issue whatsoever.However, when we start to execute the code, well, we start to get an error because that is definitely not a function.
+Solution try and catch block. But this fails for asynchronous code. Like if we put a timer to that block.
+
+Well, there's the problem whenever we do a try catch around some block of code, that code is executed and in that instant that it is executed, we watch for an error.As soon as that code is executed, we then exit out of the try catch block and life continues as usual. if the user ever write some kind of asynchronous code inside their application and it throws an error,well, once again, everything crashes.
+
+
+Do you think about here first off, first big problem is that whenever we run a user's code, it might throw some kind of error.
+Second big problem, a user might give us some code to run, it will somehow mutate the DOM and once again, if user starts changing the DOM, it might cause our program to crash.
+Like empty the body so whole site goes blank 
+we will only let the user to execute it's code in the preview iframe not more we don't want that code to change what's in the app what the user can see the dom we are not letting the user interact with it
+
+SOLUTION --- Iframe
+
+DIrect access between frames is allowed when
+The iframe element does not have a sandbox property or has a sandbox = aloow-same-origin property
+And
+We fetch the parent HTML doc and the frame HTML doc from the exact same Domain Port Protocol(http vs https)
+
+How codepen and Codesandbox work?
+After the code is transpiled send back the iframe is reloaded 
+THe html is fetched from a different domain
+
+
+
