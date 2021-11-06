@@ -119,5 +119,5 @@ After the code is transpiled send back the iframe is reloaded
 THe html is fetched from a different domain
 
 
-![alt text](https://github.com/Avi-000-Avi/TypescriptwithRedux/blob/main/img/img/SafelyExecution/5.png)
+![alt text](https://github.com/Avi-000-Avi/TypescriptwithRedux/blob/main/img/SafelyExecution/5.png)
 
