@@ -8,8 +8,7 @@ const App = () => {
     const ref = useRef<any>();
     const iframe = useRef<any>();
     const [input,setInput] = useState('');
-    const [code,setCode] = useState('');
-
+ 
     const startService = async () => {
         ref.current = await esbuild.startService({
           worker: true,
@@ -31,6 +30,9 @@ const App = () => {
             target:'es2015'
         });
     */
+   //Every time we are executing the code we are resettting the contents of iframe after executing it
+        iframe.current.srcdoc = html;
+
         const result = await ref.current.build({
             entryPoints: ['index.js'],
             bundle: true,
@@ -76,8 +78,7 @@ const App = () => {
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <pre>{code}</pre>
-      <iframe ref={iframe} sandbox="allow-scripts" srcDoc={html} />
+       <iframe ref={iframe} sandbox="allow-scripts" srcDoc={html} title="preview"/>
     </div>
   );
 };
