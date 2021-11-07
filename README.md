@@ -119,4 +119,8 @@ After the code is transpiled send back the iframe is reloaded
 THe html is fetched from a different domain
 
 
+![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/img/SafelyExecution/1.png)
+![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/img/SafelyExecution/2.png)
+![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/img/SafelyExecution/3.png)
+![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/img/SafelyExecution/4.png)
 
