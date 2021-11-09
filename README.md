@@ -124,3 +124,17 @@ THe html is fetched from a different domain
 ![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/img/SafelyExecution/3.png)
 ![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/img/SafelyExecution/4.png)
 
+
+Refresh the contents of the HTML after every execution
+Let's say the user does something like
+``` document.body.innerHTML('#root') = '';
+``` This erases the div and the next time if the user tries something like 
+```
+console.log(document.querySelector(#root));
+```Will give an error. 
+To fix that we we will reset the contents of the iframe to what it was after clicking the submit button.
+
+##Displaying React COde
+
+We can't just have a submit button we want to bundle an execute with every key press but this is very cpu intensive.Bundling is pretty computationally impressive.
+Maybe the user stops after half a second we want to bundle then
