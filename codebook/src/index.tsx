@@ -1,3 +1,4 @@
+import 'bulmaswatch/solar/bulmaswatch.min.css';
 import {useState,useEffect,useRef} from 'react';
 import ReactDom from 'react-dom';
 import * as esbuild from 'esbuild-wasm';
