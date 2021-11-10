@@ -129,9 +129,11 @@ Refresh the contents of the HTML after every execution
 Let's say the user does something like
 ``` document.body.innerHTML('#root') = '';
 ``` This erases the div and the next time if the user tries something like 
+
 ```
 console.log(document.querySelector(#root));
-```Will give an error. 
+```
+Will give an error. 
 To fix that we we will reset the contents of the iframe to what it was after clicking the submit button.
 
 ##Displaying React COde
@@ -140,4 +142,6 @@ We can't just have a submit button we want to bundle an execute with every key p
 Maybe the user stops after half a second we want to bundle then
 
 
-https://www.toptal.com/javascript/write-code-to-rewrite-your-code
+[jscodeshift - Parse js code](https://www.toptal.com/javascript/write-code-to-rewrite-your-code
+)
+
