@@ -8,7 +8,7 @@ import { useRef } from 'react';
 
 //prettier has support for various languages If we want to parse specificallly js code we have to import a specific parser for it
 import parser from 'prettier/parser-babel';
-
+ 
 
 interface CodeEditorProps {
   value:string;
@@ -30,8 +30,7 @@ const CodeEditor:React.FC<CodeEditorProps> = ({onChange,value}) => {
       })
 
       monacoEditor.getModel()?.updateOptions({tabSize:2});
-
-       
+ 
     }
 
   const onFormatClick = () => {
