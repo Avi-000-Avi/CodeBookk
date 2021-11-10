@@ -138,3 +138,6 @@ To fix that we we will reset the contents of the iframe to what it was after cli
 
 We can't just have a submit button we want to bundle an execute with every key press but this is very cpu intensive.Bundling is pretty computationally impressive.
 Maybe the user stops after half a second we want to bundle then
+
+
+https://www.toptal.com/javascript/write-code-to-rewrite-your-code
