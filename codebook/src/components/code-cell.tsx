@@ -2,6 +2,7 @@ import {useState, } from 'react';
 import CodeEditor from './codeEditor';
 import Preview from './preview';
 import bundle from '../bundler';
+import Resizable from './resizable';
 
 const CodeCell = () => {
     const [code,setCode] = useState('');
@@ -12,20 +13,15 @@ const CodeCell = () => {
         setCode(output);
     }
       return (
-    <div>
+    <Resizable direction="vertical">
+      <div style={{height:'100%',display:'flex',flexDirection:'row'}}>
       <CodeEditor 
-      value="const a =1;" 
+      initialValue="const a =1;" 
       onChange = {(value) => setInput(value)}
       />
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      ></textarea>
-      <div>
-        <button onClick={onClick}>Submit</button>
-      </div>
        <Preview code ={code}/>
-    </div>
+       </div>
+    </Resizable>
   );
 };
 
