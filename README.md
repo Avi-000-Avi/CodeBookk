@@ -145,3 +145,4 @@ Maybe the user stops after half a second we want to bundle then
 [jscodeshift - Parse js code](https://www.toptal.com/javascript/write-code-to-rewrite-your-code
 )
 
+https://www.digitalprimates.net/blog/what-values-should-be-returned-when-using-useeffect-in-react/#:~:text=Based%20on%20the%20information%20from,any%20value%2C%20implicitly%20returning%20undefined.
