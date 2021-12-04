@@ -19,8 +19,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     });
 
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
-
-  
   };
 
   const onFormatClick = () => {

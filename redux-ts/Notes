@@ -1,0 +1,9 @@
+Action Plain JS object
+Start defining Action 
+
+
+Actions dispatched by action-creators and processed by reducers
+to tie state and actions together, we write a function called a reducer.
+There are two types of actions synchronous and asynchronous 
+
+THunk used for asynchronous - gives a delayed function
