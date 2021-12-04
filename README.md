@@ -146,3 +146,28 @@ Maybe the user stops after half a second we want to bundle then
 )
 
 https://www.digitalprimates.net/blog/what-values-should-be-returned-when-using-useeffect-in-react/#:~:text=Based%20on%20the%20information%20from,any%20value%2C%20implicitly%20returning%20undefined.
+
+```
+const {id,content} = action.payload;
+            return {
+                //Returning a new object which has all features of the state
+                ...state,
+                data: {
+                    //Have data of all other cells
+                    //But override the particular cell with id returned in the action payload
+                    //Extract all properties of this cell  and only  change content property of this object
+                    ...state.data,
+                    [id]:{
+                        ...state.data[id],
+                        content,
+                    } 
+                }
+            };
+```
+
+Immerautomatically detects the changes we made to the state and returns a state object to us we don't have to return a state object
+
+```
+const {id,content} = action.payload;
+state.data[id].content = content;
+```
