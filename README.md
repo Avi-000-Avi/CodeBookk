@@ -150,7 +150,6 @@ https://www.digitalprimates.net/blog/what-values-should-be-returned-when-using-u
 ```
 const {id,content} = action.payload;
             return {
-
                 //Returning a new object which has all features of the state
                 ...state,
                 data: {
