@@ -165,9 +165,9 @@ const {id,content} = action.payload;
             };
 ```
 
-Immerautomatically detects the changes we made to the state and returns to us
+Immerautomatically detects the changes we made to the state and returns a state object to us we don't have to return a state object
 
 ```
 const {id,content} = action.payload;
-            state.data[id].content = content;
+state.data[id].content = content;
 ```
