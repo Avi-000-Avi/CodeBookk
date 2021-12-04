@@ -164,3 +164,10 @@ const {id,content} = action.payload;
                 }
             };
 ```
+
+Immerautomatically detects the changes we made to the state and returns to us
+
+```
+const {id,content} = action.payload;
+            state.data[id].content = content;
+```
