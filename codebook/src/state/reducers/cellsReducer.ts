@@ -40,20 +40,24 @@ const reducer = produce((state:CellsState = initialState,action:Action):CellsSta
             state.order[index] = state.order[targetIndex];
             state.order[targetIndex] = action.payload.id;
             return state;
-        case ActionType.INSERT_CELL_BEFORE:
+        case ActionType.INSERT_CELL_AFTER:
+            //Create a new cell
             const cell: Cell = {
                  content:'',
-                type:action.payload.type,
+                type:action.payload.type, 
                  id:randomId()
             }
 
+            //Add that cell to the data object
             state.data[cell.id] = cell; 
-            const foundIndex = state.order.findIndex(id =>id===action.payload.id);
 
+
+            //Inserting id of that cell into our order 
+            const foundIndex = state.order.findIndex(id =>id===action.payload.id);
             if(foundIndex<0){
-                state.order.push(cell.id);
+                state.order.unshift(cell.id);
             } else {
-                state.order.splice(foundIndex,0,cell.id);
+                state.order.splice(foundIndex + 1,0,cell.id);
             }
 
             return state;

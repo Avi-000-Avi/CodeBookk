@@ -1,26 +1,33 @@
-import MDEditor from '@uiw/react-md-editor';
-import { useState,useEffect, useRef } from 'react';
 import './text-editor.css';
+import { useState, useEffect, useRef } from 'react';
+import MDEditor from '@uiw/react-md-editor';
+import { Cell } from '../state';
+import { useActions } from '../hooks/use-actions';
 
-const TextEditor:React.FC = () => {
+interface TextEditorProps {
+  cell: Cell;
+} 
+
+const TextEditor:React.FC<TextEditorProps> = ({cell}) => {
     const ref = useRef<HTMLDivElement | null>(null);
     const [editing,setEditing] = useState(false);
-    const [value,setValue] = useState('Click on me');
+    const {updateCell}  = useActions(); 
 
     useEffect(() => {
         const listener = (event:MouseEvent) => {
             //Make sure we have a ref pointing to that div in other words see if the ref.current is defined
             //THat we actually clicked on an element that does exist
             //Whether what we clicked on was insdie of div
-            if(ref.current && event.target && ref.current.contains(event.target as Node)){
-               console.log('element clicked on is inside editor');
-               return;
-            }
-            console.log('element clicked on is not inside editor');
-
-            console.log(event.target);
-            setEditing(false);
-        };
+            if (
+                ref.current &&
+                event.target &&
+                ref.current.contains(event.target as Node)
+              ) {
+                return;
+              }
+        
+              setEditing(false);
+            };
 
         document.addEventListener('click',listener,{capture:true});
         return () => {
@@ -28,16 +35,24 @@ const TextEditor:React.FC = () => {
         }
     }, [])
     
-    if(editing){
-        return (
-            <div className="text-editor" ref= {ref}>
-                <MDEditor value={value} onChange={(v) => setValue(v || '')}/>
-            </div>
-        )
-    }   
+    if (editing) {
+    return (
+      <div className="text-editor" ref={ref}>
+        <MDEditor
+          value={cell.content}
+          onChange={(v) => updateCell(cell.id, v || '')}
+        />
+      </div>
+    );
+  }
+  
 
-    return <div onClick = {() => setEditing(true)}>
-        <MDEditor.Markdown source={value}/>
-    </div>;
-}
+  return (
+    <div className="text-editor card" onClick={() => setEditing(true)}>
+      <div className="card-content">
+        <MDEditor.Markdown source={cell.content || 'Click to edit'} />
+      </div>
+    </div>
+  );
+};
 export default TextEditor;

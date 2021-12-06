@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
-import CodeEditor from './codeEditor';
+import CodeEditor from './code-editor';
 import Preview from './preview';
 import bundle from '../bundler';
 import Resizable from './resizable';
+import {Cell} from '../state';
+import {useActions} from '../hooks/use-actions';
 
-const CodeCell = () => {
+interface CodeCellProps{
+  cell:Cell
+}
+
+const CodeCell:React.FC<CodeCellProps> = ({cell}) => {
+  const {updateCell} = useActions();
+
   const [code, setCode] = useState('');
   const [err, setErr] = useState('');
-  const [input, setInput] = useState('');
-
+ 
   //Debouncing - Delaying a function 
   //If input changes , useeffect call happens settimeout is called and the bundle which was supposed to happen is delayed for 7.5 millisec
   //Next type input changes useeffect is called and settimoeut is called again with the new timer and the function is delayed again
@@ -16,7 +23,7 @@ const CodeCell = () => {
   
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const output = await bundle(input);
+      const output = await bundle(cell.content);
       setCode(output.code);
       setErr(output.err);
     }, 750);
@@ -24,15 +31,15 @@ const CodeCell = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [input]);
+  }, [cell.content]);
 
   return (
     <Resizable direction="vertical">
-      <div style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
+      <div style={{ height: 'calc(100% -10px)', display: 'flex', flexDirection: 'row' }}>
         <Resizable direction="horizontal">
           <CodeEditor
-            initialValue="const a = 1;"
-            onChange={(value) => setInput(value)}
+            initialValue={cell.content}
+            onChange={(value) => updateCell(cell.id,value)}
           />
         </Resizable>
         <Preview code={code} err={err} />
