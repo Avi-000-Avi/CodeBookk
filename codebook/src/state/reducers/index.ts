@@ -1,13 +1,15 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import cellsReducer from './cellsReducer';
+import bundlesReducer from './bundlesReducer';
 
-const reducers = combineReducers(({
-    cells:cellsReducer
-}))
+const reducers = combineReducers({
+  cells: cellsReducer,
+  bundles: bundlesReducer,
+});
 
 export default reducers;
 
-export type RootState = ReturnType<typeof reducers>
+export type RootState = ReturnType<typeof reducers>;
 
 //Types to useSelector
 //Define a new type called RootState - describes the overall structure of the state object inside of redux store

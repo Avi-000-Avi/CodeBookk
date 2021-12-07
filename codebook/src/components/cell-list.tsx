@@ -4,6 +4,8 @@ import CellListItem from './cell-list-item';
 import AddCell from './add-cell';
 
 const CellList: React.FC = () => {
+  // Taking two pieces of state combining them together and creating a new derived state
+  
   const cells = useTypedSelector(({ cells: { order, data } }) =>
     order.map((id) => data[id])
   );
