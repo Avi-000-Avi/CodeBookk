@@ -171,3 +171,8 @@ Immerautomatically detects the changes we made to the state and returns a state 
 const {id,content} = action.payload;
 state.data[id].content = content;
 ```
+
+### Redux Selector 
+
+#useMemo
+https://www.youtube.com/watch?v=THL1OPn72vo
