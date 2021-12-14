@@ -176,3 +176,15 @@ state.data[id].content = content;
 
 #useMemo
 https://www.youtube.com/watch?v=THL1OPn72vo
+
+goal of our local API is.
+It takes a long time to start up because we have to start up all the code transpiring, all the bundling,all that kind of stuff and all that set up and start up.
+So whenever a user is running the local API.
+The first route that we're going to put together inside there is a route that's going to fetch all the built production assets for our react application.
+So, for example, if the user makes a request to just localhost at Port 40 or 50 or whatever or our  local API is running on, we're going to send them back the indexed HTML file from our reactor application.  That HTML file will load up inside the user's browser. There will, of course, be a couple of script tags inside of there in the browser, will make some additional requests to go and get those additional JavaScript files from our local API.
+API is serving all the production assets of our REACT application, not just the indexed HTML file.
+
+
+Allow a browser to make a request to something like get on cells whenever a user makes a request like this, we're going to take a look at all the cells inside of the file. And remember, that is the name, the file that was provided to the CLI. We're going to take all the cells of  that file and send them back over to the browser. So in this case, would be something like an array of cell objects and remember, every cell has an ID content and type not so type here, but it does exist.
+
+A user in their browser should be able to make a change to a cell. Whenever they do, we want to take the updated list of cells, post them to something like cells. And our local API is going to take that list of cells and store them into a file. And that is the same file that was provided when user ran that book server command.
