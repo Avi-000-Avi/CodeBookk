@@ -52,23 +52,23 @@ var createCellsRouter = function (filename, dir) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 5]);
+                    _a.trys.push([0, 2, , 6]);
                     return [4 /*yield*/, promises_1.default.readFile(fullPath, { encoding: 'utf-8' })];
                 case 1:
                     result = _a.sent();
                     res.send(JSON.parse(result));
-                    return [3 /*break*/, 5];
+                    return [3 /*break*/, 6];
                 case 2:
                     err_1 = _a.sent();
                     if (!(err_1 instanceof Error)) return [3 /*break*/, 4];
-                    console.log('Heres the problem --->', err_1.message);
                     return [4 /*yield*/, promises_1.default.writeFile(fullPath, '[]', 'utf-8')];
                 case 3:
                     _a.sent();
                     res.send([]);
-                    _a.label = 4;
-                case 4: return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 4: throw err_1;
+                case 5: return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     }); });
@@ -78,10 +78,10 @@ var createCellsRouter = function (filename, dir) {
             switch (_a.label) {
                 case 0:
                     cells = req.body.cells;
-                    //write the cells from the file
+                    // Write the cells into the file
                     return [4 /*yield*/, promises_1.default.writeFile(fullPath, JSON.stringify(cells), 'utf-8')];
                 case 1:
-                    //write the cells from the file
+                    // Write the cells into the file
                     _a.sent();
                     res.send({ status: 'ok' });
                     return [2 /*return*/];

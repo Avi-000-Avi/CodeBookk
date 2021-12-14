@@ -1,10 +1,12 @@
 import express from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import path from 'path';
-import { createCellsRouter } from './routes/cellls';
+import { createCellsRouter } from './routes/cells';
 
 export const serve =  (port:number,filename:string,dir:string,useProxy:boolean) => {
         const app = express();
+        
+        app.use(createCellsRouter(filename,dir));
 
         
         //while doing active development
@@ -26,10 +28,9 @@ export const serve =  (port:number,filename:string,dir:string,useProxy:boolean) 
             app.use(express.static(path.dirname(packagePath)));//we want path upto build directory     
         }
 
-        app.use(createCellsRouter(filename,dir));
 
         //If everything goes well it will get resolved and it will work as it should be else if there's an error it will throw an error which can be caught in try catch block
-        return  new Promise<void>((resolve,reject) => {
-            app.listen(port,resolve).on('error',reject);
-        });
-};
+        return new Promise<void>((resolve, reject) => {
+            app.listen(port, resolve).on('error', reject);
+          });
+        };

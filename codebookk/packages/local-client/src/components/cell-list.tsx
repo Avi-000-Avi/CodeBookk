@@ -1,8 +1,9 @@
-import { Fragment } from 'react';
+import { Fragment ,useEffect} from 'react';
 import { useTypedSelector } from '../hooks/use-typed-selector';
 import CellListItem from './cell-list-item';
 import AddCell from './add-cell';
 import './cell-list.css';
+import { useActions } from '../hooks/use-actions';
 
 const CellList: React.FC = () => {
   // Taking two pieces of state combining them together and creating a new derived state
@@ -10,6 +11,13 @@ const CellList: React.FC = () => {
   const cells = useTypedSelector(({ cells: { order, data } }) =>
     order.map((id) => data[id])
   );
+
+  const {fetchCells} = useActions();
+
+  useEffect(() => {
+    fetchCells();
+  }, [])
+
 
   const renderedCells = cells.map((cell) => (
     <Fragment key={cell.id}>
