@@ -24,7 +24,7 @@ export const serve =  (port:number,filename:string,dir:string,useProxy:boolean) 
         }else
         {//WHile installed in a users machine
             //absolute path to get to that index.html file
-            const packagePath = require.resolve('local-client/build/index.html');
+            const packagePath = require.resolve('@@codebookk/local-client/build/index.html');
             app.use(express.static(path.dirname(packagePath)));//we want path upto build directory     
         }
 
