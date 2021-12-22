@@ -1,1 +1,1 @@
-[{"content":"adfadfadfadfadfasdf","type":"text","id":"gxp6m"},{"content":"adfadfadfadfadfadfadsfadfadsfadafafdfsfadsfafajdslfkjaldfjalsdkf","type":"code","id":"nazbs"}]
+[{"content":"Notes","type":"text","id":"gxp6m"},{"content":"\n\nimport React from 'react';\nimport ReactDOM from 'react-dom';\n\nfunction Hello(props) {\n  return <h1>Hello World!</h1>;\n}\n\nReactDOM.render(<Hello />, document.getElementById('root'));\n","type":"code","id":"nazbs"}]
