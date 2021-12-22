@@ -23,6 +23,7 @@ Bundling and transpiling code directly in the browser. This is a task normally d
     Leveraged Web Assembly to run a code bundler directly in the browser at lightning-fast speeds
 
 
+![alt text](https://github.com/Avi-000-Avi/CodeBookk/blob/main/Preview.png?raw=true)
 
 
 ## Three Biggest Challenges
