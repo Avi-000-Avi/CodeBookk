@@ -24,9 +24,6 @@ Bundling and transpiling code directly in the browser. This is a task normally d
 
 
 
-Executing user's code in a preview window
-
-Take that code in the CodeEditor Component and communicate with the preview component.
 
 ## Three Biggest Challenges
 
